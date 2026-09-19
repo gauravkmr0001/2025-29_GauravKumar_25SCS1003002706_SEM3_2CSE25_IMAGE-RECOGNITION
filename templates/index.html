@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Recognition System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>🔍 Image Recognition System</h1>
+      <p class="subtitle">Upload an image and let AI identify what's in it.</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+
+      <!-- Upload / drag-and-drop zone -->
+      <div id="drop-zone" class="drop-zone">
+        <input type="file" id="file-input" accept=".jpg,.jpeg,.png" hidden />
+        <div id="drop-zone-content">
+          <div class="upload-icon">📤</div>
+          <p><strong>Drag & drop</strong> an image here</p>
+          <p class="or-text">or</p>
+          <button type="button" id="browse-btn" class="btn btn-primary">Browse Files</button>
+          <p class="hint">Accepted formats: JPG, JPEG, PNG (max 8 MB)</p>
+        </div>
+      </div>
+
+      <!-- Error message -->
+      <div id="error-message" class="error-message hidden"></div>
+
+      <!-- Preview + actions -->
+      <div id="preview-section" class="preview-section hidden">
+        <img id="image-preview" src="" alt="Uploaded image preview" />
+        <div class="preview-actions">
+          <button type="button" id="predict-btn" class="btn btn-primary">Identify Object</button>
+          <button type="button" id="reset-btn" class="btn btn-secondary">Upload Another Image</button>
+        </div>
+      </div>
+
+      <!-- Loading indicator -->
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Analyzing image...</p>
+      </div>
+
+      <!-- Result -->
+      <div id="result-section" class="result-section hidden">
+        <h2>Prediction Result</h2>
+        <div class="result-card">
+          <p class="result-label" id="result-label">-</p>
+          <div class="confidence-bar-track">
+            <div class="confidence-bar-fill" id="confidence-bar-fill"></div>
+          </div>
+          <p class="confidence-text" id="confidence-text">0% confidence</p>
+        </div>
+
+        <div id="other-predictions" class="other-predictions"></div>
+
+        <button type="button" id="reset-btn-2" class="btn btn-secondary">Upload Another Image</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with Flask, TensorFlow/Keras &amp; OpenCV — College Mini Project</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
